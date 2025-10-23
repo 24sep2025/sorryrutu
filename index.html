@@ -1,78 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I'm sorry Rutu and I love you soooooo much. ❤️</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Arial', sans-serif;
-        background: #fce4ec;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        flex-direction: column;
-        text-align: center;
-        color: #880e4f;
-    }
-    #gameArea {
-        position: relative;
-        width: 80%;
-        max-width: 600px;
-        height: 400px;
-        background: #fff0f5;
-        border: 3px solid #880e4f;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        margin-bottom: 20px;
-    }
-    .chibi {
-        position: absolute;
-        bottom: 20px;
-        width: 60px;
-        height: 60px;
-        background-size: cover;
-        transition: left 1s, bottom 1s;
-    }
-    #chibi1 { left: 20px; background: url('chibi1.jpg') no-repeat center/cover; }
-    #chibi2 { right: 20px; background: url('chibi2.jpg') no-repeat center/cover; }
-    #chibi3 {
-        display: none;
-        left: 50%;
-        bottom: 50%;
-        transform: translate(-50%, 50%);
-        background: url('chibi3.png') no-repeat center/cover;
-    }
-    #message { font-size: 1.2rem; margin-bottom: 10px; min-height: 40px; }
-    #restartBtn {
-        padding: 10px 20px;
-        background: #880e4f;
-        color: #fff;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: transform 0.2s;
-    }
-    #restartBtn:hover { transform: scale(1.1); }
-
-    .heart {
-        position: absolute;
-        font-size: 2rem;
-        color: red;
-        animation: floatUp 3s forwards;
-    }
-    @keyframes floatUp {
-        0% { transform: translateY(0) scale(1); opacity: 1; }
-        100% { transform: translateY(-600px) scale(2); opacity: 0; }
-    }
-</style>
+<title>I'm sorry Rutu and I love you soooooo much ❤️</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -86,64 +18,6 @@
 <button id="restartBtn">I need more sorries</button>
 <video id="music" src="1.mp4"></video>
 
-<script>
-    const messages = [
-        "I am really sorry to hurt you like this.",
-        "I will never repeat this again my cutiepie.",
-        "I will always support you and idk why I did that yesterday.",
-        "I promise to always care for you, support you and keep you, ur health and happiness as my top priority."
-    ];
-    const messageDiv = document.getElementById('message');
-    const chibi1 = document.getElementById('chibi1');
-    const chibi2 = document.getElementById('chibi2');
-    const chibi3 = document.getElementById('chibi3');
-    const restartBtn = document.getElementById('restartBtn');
-    const music = document.getElementById('music');
-
-    let index = 0;
-
-    function showMessage() {
-        if(index < messages.length) {
-            messageDiv.textContent = messages[index];
-            let newLeft = 100 + index*120;
-            chibi1.style.left = newLeft + 'px';
-            chibi1.style.bottom = 20 + index*20 + 'px';
-            index++;
-            if(index === messages.length) {
-                setTimeout(finalStep, 1000);
-            }
-        }
-    }
-
-    function finalStep() {
-        messageDiv.textContent = "Together forever";
-        chibi3.style.display = 'block';
-        music.play();
-        for(let i=0; i<100; i++){
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random()*window.innerWidth + 'px';
-            heart.style.top = Math.random()*window.innerHeight + 'px';
-            heart.textContent = '❤️';
-            document.body.appendChild(heart);
-            setTimeout(()=> heart.remove(), 3000);
-        }
-    }
-
-    const interval = setInterval(() => {
-        if(index >= messages.length) clearInterval(interval);
-        else showMessage();
-    }, 2500);
-
-    restartBtn.addEventListener('click', () => {
-        index = 0;
-        chibi1.style.left = '20px';
-        chibi1.style.bottom = '20px';
-        chibi3.style.display = 'none';
-        messageDiv.textContent = '';
-        showMessage();
-    });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
